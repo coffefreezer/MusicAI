@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VibeCheck AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>Your Vibe</h2>
+            <div class="card">
+                <h3>🔥 Top Right Now</h3>
+                {% for track in top %}
+                    <p>{{ track.name }} - <span>{{ track.artists[0].name }}</span></p>
+                {% endfor %}
+            </div>
+            <div class="card">
+                <h3>🕒 Recently Played</h3>
+                {% for item in recent %}
+                    <p>{{ item.track.name }}</p>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <main class="chat-container">
+            <header>
+                <h1>VibeCheck <span>AI</span></h1>
+            </header>
+            <div id="chat-box" class="chat-box">
+                <div class="msg ai">I'm ready. What's the mood today?</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Ask about your taste...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const box = document.getElementById('chat-box');
+            if (!input.value) return;
+
+            box.innerHTML += `<div class="msg user">${input.value}</div>`;
+            const message = input.value;
+            input.value = '';
+
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: message})
+            });
+            const data = await response.json();
+            box.innerHTML += `<div class="msg ai">${data.reply}</div>`;
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
+</body>
+</html>

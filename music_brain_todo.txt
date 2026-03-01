@@ -1,0 +1,22 @@
+--- 🎵 MUSIC BRAIN: PROJECT ROADMAP ---
+
+1. THE INFINITE LOOP
+   Make the script stay open for a continuous chat until 'exit' is typed.
+   
+2. PERSISTENT MEMORY
+   Enable the AI to remember facts from earlier in the conversation.
+
+3. THE 'BUDDY' PERSONA
+   Add a question generator so the AI stays proactive and keeps the chat alive.
+
+4. AUTO-LOGGING
+   Ensure all vibes, playlists, and chats are saved to 'music_diary.txt'.
+
+5. THE SETUP INTRODUCTION (High Priority)
+   Create a 'First Launch' session where the AI interviews the user to 
+   understand their taste. This profile will influence the AI's behavior 
+   globally across all modes until changed.
+
+6. UI & WEB INTERFACE (Future Phase)
+   Transition from terminal to a website/app with buttons for 'Quick Options' 
+   like Find Vibes, Create Playlist, and Library Access.
